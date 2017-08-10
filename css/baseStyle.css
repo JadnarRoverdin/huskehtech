@@ -1,0 +1,225 @@
+
+@keyframes titleOccilation
+{
+  0%
+  {
+    color:black;
+    text-shadow: -1px -1px white, 1px -1px white, -1px 1px white, 1px 1px white;
+  }
+  50%
+  {
+    color:white;
+    text-shadow: -1px -1px black, 1px -1px black, -1px 1px black, 1px 1px black;
+  }
+  100%
+  {
+    color:black;
+    text-shadow: -1px -1px white, 1px -1px white, -1px 1px white, 1px 1px white;
+  }
+}
+
+html, body
+{
+  height:100%;
+  margin: 0;
+  padding:0;
+}
+
+html
+{
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat:no-repeat;
+  background: rgb(0,50, 130);
+  background: -webkit-linear-gradient(top, black,rgb(0,50, 130));
+  background: -o-linear-gradient(top, black, rgb(0,50, 130));
+  background: -moz-linear-gradient(top, black,rgb(0,50, 130));
+  background: linear-gradient(to bottom black, rgb(0,50, 130) fixed);
+  background-attachment:fixed;
+  font-family:"Arial Black", Gadget, sans-serif;
+  height:100%;
+}
+
+body:after
+{
+  content:"";
+  display:block;
+  position:fixed;
+  top:0;
+  right:0;
+  background-image:url("../img/huskehtechlab-white.png");
+  background-repeat:no-repeat;
+  background-position: right top;
+  width: 50%;
+  height: 50%;
+  opacity: 0.4;
+  z-index:-1;
+}
+
+#wrapper
+{
+  min-height:100%;
+  height:auto !important;
+  margin-bottom:-100px;
+  height:100%;
+}
+
+#footer, #push
+{
+  height: 100px;
+}
+
+ul
+{
+  margin:0;
+  padding:0;
+}
+
+li
+{
+
+    margin: 5px 0px;
+    display:block;
+    text-decoration: none;
+    padding: 5px 0px;
+    border-style:solid;
+    border-width: 2px;
+    border-right:none;
+    border-left:none;
+    border-radius: 20px 50px 20px 50px;
+    text-align: center;
+    height:20px;
+    width:200px;
+    color: white;
+    font-size: 15px;
+}
+
+
+li.menuLink
+{
+  margin: 5px 0px;
+  display:block;
+  text-decoration: none;
+  padding: 5px 0px;
+  border-style:solid;
+  border-width: 2px;
+  border-right:none;
+  border-left:none;
+  border-radius: 20px 50px 20px 50px;
+  text-align: center;
+  height:20px;
+  width:150px;
+  color: white;
+  font-size: 15px;
+}
+li:hover
+{
+  color: rgb(255, 99, 28);
+}
+
+img
+{
+  padding: 5px 5px;
+  margin: 5px 5px;
+  border-style:solid;
+  border-width: 2px;
+  border-radius:20px 50px 20px 50px;
+
+}
+
+a
+{
+  text-decoration:none;
+  color: rgb(255, 99, 28);
+}
+a:hover
+{
+  color:lightgray;
+}
+
+a.header
+{
+  animation-name: titleOccilation;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  font-size: 50px;
+}
+a.header:hover
+{
+  animation-name: titleOccilation;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  font-size: 50px;
+}
+
+
+div.footer
+{
+  text-align: center;
+}
+
+div
+{
+  color:white;
+}
+
+div.standardtext
+{
+  color:white;
+}
+
+
+.hidden
+{
+  display:none;
+}
+
+table.main
+{
+  width:100%;
+  height: 100%;
+}
+
+td
+{
+  vertical-align:top;
+}
+
+td.links
+{
+  width:200px;
+}
+
+
+.adminLink
+{
+  text-indent: 20px;
+}
+
+
+#scroller::-webkit-scrollbar-track
+{
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+ background-color: #F5F5F5;
+ border-radius: 10px;
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+
+}
+
+#scroller::-webkit-scrollbar
+{
+ width: 6px;
+ background-color: rgba(43,72,99,0.5);
+ border-radius: 10px;
+ width:10px;
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+
+#scroller::-webkit-scrollbar-thumb
+{
+ background-color: rgba(100, 120, 150, 1);
+ border-radius: 10px;
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
