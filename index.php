@@ -13,7 +13,7 @@
   <body>
     <div id="wrapper">
       <div id="header">
-        <a class='header' href='/HuskehTech/'>HuskehTech2</a>
+        <a class='header' href='/HuskehTech/'>HuskehTech</a>
       </div>
 
       <div id="content">
