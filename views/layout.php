@@ -24,11 +24,11 @@
         <?php
         if(!isset($_SESSION['admin']))
         {
-          echo "<form action='?controller=user&action=login' method='post'>";
-          echo "<input class='input' type='text' name='username' placeholder='Email'><br>";
-          echo "<input class='input' type='password' name='password' placeholder='Password'><br>";
-          echo "<input class='input' type='submit' value='Login'> <a href='?controller=user&action=addUser'>Register</a>";
-          echo "</form>";
+          // echo "<form action='?controller=user&action=login' method='post'>";
+          // echo "<input class='input' type='text' name='username' placeholder='Email'><br>";
+          // echo "<input class='input' type='password' name='password' placeholder='Password'><br>";
+          // echo "<input class='input' type='submit' value='Login'> <a href='?controller=user&action=addUser'>Register</a>";
+          // echo "</form>";
         }
         else
         {
