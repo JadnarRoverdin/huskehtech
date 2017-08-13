@@ -19,7 +19,7 @@
 
 
 
-        <input type='submit' value='Register'></td>
+        <input class = 'input' type='submit' value='Register'></td>
 
   </form>
 </div>
