@@ -99,13 +99,17 @@ li
     -webkit-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
     -moz-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
     box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
-    transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out;
+    transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
 }
 
 a.menuLink
 {
   text-decoration:none;
   background:black;
+  -webkit-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+  -moz-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+  box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+
 }
 li.menuLink
 {
@@ -130,6 +134,9 @@ li:hover
 {
   color: white;
   border-color:white;
+  -webkit-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+  -moz-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+  box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
 }
 
 img

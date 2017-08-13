@@ -1,5 +1,6 @@
 .input
 {
+  width: 100%;
   color:white;
   border: 2px solid rgb(100, 120, 150);
   border-radius: 10px 10px 10px 10px;
@@ -10,18 +11,36 @@
   -moz-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
   box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
   font-weight:bold;
+  transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
+}
+
+.input:hover
+{
+  -webkit-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+  -moz-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+  box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+  border-color: white;
 }
 .numtoup
  {
    color:white;
    border: 2px solid rgb(100, 120, 150);
    border-radius: 10px 10px 10px 10px;
-   background: rgba(43,72,99,0.5);
+   background: black;
    padding: 10px;
    margin: 10px;
    -webkit-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
    -moz-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
    box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
+   transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
+ }
+
+ .numtoup:hover
+ {
+   -webkit-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+   -moz-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+   box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+   border-color: white;
  }
 
  div.fileuploadzone
@@ -56,7 +75,7 @@
    color: white;
    border-color:white;
  }
-
+/*
  input[type=submit]
  {
    /*background-color:black;*/
@@ -75,13 +94,16 @@
    color: rgb(150,150,150);
    font-size: 15px;
    font-weight: bold;
-   transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out;
+   transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out,box-shadow 0.25s ease-in-out;
  }
 
  input[type=submit]:hover
  {
    color: white;
    border-color:white;
+   -webkit-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+   -moz-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+   box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
  }
 
  input[type=text]
@@ -93,4 +115,4 @@
  input[type=text]:hover
  {
 
- }
+ }*/

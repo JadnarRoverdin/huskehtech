@@ -66,7 +66,6 @@ td
 .content
 {
   background: rgba(100, 120, 150, 0.25);
-  border-right: 0px solid black;
   border: 5px solid rgba(0,0,0,0);
   width: 60%;
   border-radius: 0px 0px 0px 20px;
