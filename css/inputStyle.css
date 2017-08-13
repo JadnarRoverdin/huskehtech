@@ -46,18 +46,19 @@
    text-align: center;
    height:30px;
    width:200px;
-   color: rgb(255, 99, 28);
+   color: rgb(150,150,150);
    font-size: 15px;
  }
  button:hover
  {
 
    color: white;
+   border-color:white;
  }
 
  input[type=submit]
  {
-   background-color:black;
+   /*background-color:black;*/
    margin: 5px 0px;
    display:block;
    text-decoration: none;
@@ -69,14 +70,17 @@
    border-radius: 20px 50px 20px 50px;
    text-align: center;
    height:30px;
-   width:150px;
-   color: rgb(255, 99, 28);
+   width:90%;
+   color: rgb(150,150,150);
    font-size: 15px;
+   font-weight: bold;
+   transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out;
  }
 
  input[type=submit]:hover
  {
    color: white;
+   border-color:white;
  }
 
  input[type=text]

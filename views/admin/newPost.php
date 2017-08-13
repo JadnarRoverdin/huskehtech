@@ -48,6 +48,6 @@ $(document).ready(function(){
                       </select><br>
   </div>
 
-  <input type='submit' value ="Submit" name = "submit"><br>
+  <input class='input' type='submit' value ="Submit" name = "submit"><br>
 </form>
 </div>

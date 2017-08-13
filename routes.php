@@ -7,20 +7,16 @@ require_once('models/post.php');
     switch ($controller)
     {
       case 'pages':
-        require_once('models/database.php');
         $controller = new PagesController();
         break;
       case 'post':
-        require_once('models/database.php');
         $controller = new PagesController();
         break;
       case 'portfolio':
-          require_once('models/database.php');
           $controller = new PortfolioController();
           break;
       case 'admin':
         require_once('models/admin.php');
-        require_once('models/database.php');
         $controller = new AdminController();
         break;
       case 'evaluation':
@@ -29,7 +25,6 @@ require_once('models/post.php');
         break;
       case 'user':
         require_once('models/user.php');
-        require_once('models/database.php');
         $controller = new UserController();
         break;
     }

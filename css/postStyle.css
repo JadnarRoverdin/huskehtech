@@ -1,17 +1,29 @@
+@keyframes backfade
+{
+  from
+  {
+    background-color: rgba(43,72,99,0.5);
+  }
+  to
+  {
+    background-color: rgba(50,50,50,0.5);
+  }
+}
+
 td
 {
   vertical-align:top;
 }
 .postLink
 {
-  /*text-shadow: -1px -1px darkgrey, 1px -1px darkgrey, -1px 1px darkgrey, 1px 1px darkgrey;*/
-  color: rgba(100,100,100,.8);
+  /*text-shadow: -1px -1px rgb(150,150,150), 1px -1px rgb(150,150,150), -1px 1px rgb(150,150,150), 1px 1px rgb(150,150,150);*/
+  color: rgb(150,150,150);
   font-size: 30px;
 }
 
 .postLink:hover
 {
-  text-shadow: -1px -1px rgba(150,150,150,.5), 1px -1px rgba(150,150,150,.5), -1px 1px rgba(150,150,150,.5), 1px 1px rgba(150,150,150,.5);
+  /*text-shadow: -1px -1px white, 1px -1px white, -1px 1px white, 1px 1px white;*/
   color: white;
   font-size: 30px;
 }
@@ -28,6 +40,14 @@ td
   -webkit-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
   -moz-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
   box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
+  transition: background 1s ease-in-out
+
+}
+
+.postCard:hover
+{
+  background-color: rgba(50,50,50,0.5);
+
 }
 .postLinkBack
 {
@@ -41,6 +61,7 @@ td
   -moz-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
   box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
 }
+
 
 .content
 {
