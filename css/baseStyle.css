@@ -18,7 +18,10 @@
   }
 }
 
-
+table
+{
+  width:100%;
+}
 
 html, body
 {
@@ -146,14 +149,23 @@ img
   border-style:solid;
   border-width: 2px;
   border-radius:20px 50px 20px 50px;
+  transition: all 0.75s ease-in-out;
+}
 
+img:hover
+{
+  transform: scale(1.1);
+  z-index: 2;
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 1);
+  -moz-box-shadow:  0px 0px 20px 0px rgba(255, 255, 255, 1);
+  box-shadow:  0px 0px 20px 5px rgba(255, 255, 255, 1);
 }
 
 a
 {
   text-decoration:overline;
   color: rgb(150,150,150);
-  transition: color 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 a:hover
 {

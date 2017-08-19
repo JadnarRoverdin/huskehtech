@@ -4,27 +4,32 @@
   <?php
     foreach($posts as $post)
     {
+      $areImages = false;
+      if(sizeof($post->images) > 0)
+        $areImages =true;
       ?>
           <table class='postCard'>
             <tr>
-              <td class='postLinkBack'>
+              <?php if($areImages) echo "<td class='postLinkBack'>"; else echo "<td class='postLinkBackAlt'>"; ?>
                 <a class='postLink' href='?controller=pages&action=viewPost&postID=<?php echo $post->id; ?>'><?php echo $post->title; ?></a>
                 <br><?php echo $post->author; ?>
                 <br><?php echo $post->date; ?>
               </td>
-              <td class ='postImages' rowspan='2'>
-                  <?php
-                    if(sizeof($post->images) > 0)
+              <?php
+                if($areImages)
+                {
+                  echo "<td class ='postImages' rowspan='2'>";
                     foreach($post->images as $image)
                     {
                       if(substr($image,0,15) === "img/postImages/" && strlen($image) > 15)
                       echo "<a href'".$image."'><img src='".$image."' width='200'></a>";
                     }
-                  ?>
-                </td>
+                    echo "</td>";
+                  }
+                ?>
             </tr>
             <tr>
-              <td class='content'>
+              <?php if($areImages) echo "<td class='content'>"; else echo "<td class='contentAlt'>"; ?>
                   <?php
                     if($post->content >0)
                       foreach($post->content as $content)

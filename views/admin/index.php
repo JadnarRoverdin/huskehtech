@@ -5,16 +5,16 @@
   <table>
     <tr>
       <td>
-        <li><a href = '?controller=admin&action=addPost'>Add A Post</a></li>
-        <li><a href = '?controller=admin&action=deletePosts'>Delete Posts</a></li>
-        <li><a href = '?controller=admin&action=addTag'>Add A Tag</a></li>
+        <a class='menuLink' href = '?controller=admin&action=addPost'><li>Add A Post</li></a>
+        <a class='menuLink' href = '?controller=admin&action=deletePosts'><li>Delete Posts</li></a>
+        <a class='menuLink' href = '?controller=admin&action=addTag'><li>Add A Tag</li></a>
       </td>
       <td>
-        <li><a href = '?controller=evaluation&action=addCriteria'>Add Criteria</a></li>
-        <li><a href = '?controller=evaluation&action=addCriteriaSet'>Create a Criteria Set</a></li>
+        <a class='menuLink' href = '?controller=evaluation&action=addCriteria'><li>Add Criteria</li></a>
+        <a class='menuLink' href = '?controller=evaluation&action=addCriteriaSet'><li>Create a Criteria Set</li></a>
       </td>
       <td>
-        <li><a href = '?controller=user&action=addUser'>Register User</a></li>
+        <a class='menuLink' href = '?controller=user&action=addUser'><li>Register User</li></a>
       </td>
     </tr>
   </table>

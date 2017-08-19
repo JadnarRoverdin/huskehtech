@@ -1,7 +1,7 @@
 
 <table class="main">
   <tr>
-    <td class ="postLinkBack" style='width:200px'>
+    <td class ="postLinkBackAlt" style='width:200px'>
         <ul>
         <a class='menuLink' href = '?controller=pages&action=index'><li>Home</li></a>
         <a class='menuLink'  href = '?controller=pages&action=about'><li>About</li></a>
@@ -24,7 +24,7 @@
     </td>
   </tr>
   <tr>
-    <td class='content' style='width:200px'>
+    <td class='contentAlt' style='width:200px'>
         <?php
         if(!isset($_SESSION['admin']))
         {
