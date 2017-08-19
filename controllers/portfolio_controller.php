@@ -3,7 +3,7 @@ Class PortfolioController
 {
   public function index()
   {
-    $postList = Post::tag("News");
+    $postList = Post::tag("Portfolio");
     require_once('views/portfolio/index.php');
   }
 
