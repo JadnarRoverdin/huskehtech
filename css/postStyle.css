@@ -40,9 +40,7 @@ td
   -webkit-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
   -moz-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
   box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
-  transition: background 1s ease-in-out,
-              border     1s ease-in-out,
-              box-shadow 1s ease-in-out;
+  transition: all 1s ease-in-out;
 
 }
 
@@ -50,9 +48,9 @@ td
 {
   background-color: rgba(0,0,0,1);
   border: 2px solid rgba(2255,255,255,1);
-  -webkit-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
-  -moz-box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
-  box-shadow: inset 0px 0px 20px 0px rgba(200, 200, 200, 1);
+  -webkit-box-shadow: inset 0px 0px 20px 0px rgba(255, 255, 255, 1);
+  -moz-box-shadow: inset 0px 0px 20px 0px rgba(255, 255, 255, 1);
+  box-shadow: inset 0px 0px 20px 0px rgba(255, 255, 255, 1);
 }
 .postLinkBack
 {
