@@ -127,7 +127,7 @@ Class Post
       $output = array();
       while($r = $stmt->fetch(PDO::FETCH_ASSOC, 0))
       {
-        $output[] = array($r['contentID'], $r['contentContents']);
+        $output[] = array($r['contentID'], nl2br(htmlspecialchars($r['contentContents'])));
       }
       return $output;
     }
@@ -189,4 +189,13 @@ Class Post
       echo "ERROR in getTags: " . $e->getMessage();
     }
   }
+  //  ==================================================================================== UPDATE POST
+
+  public static function updatePost($postID, $postName, $postDate, $postTime, $postContent, $postContentID)
+  {
+
+
+
+  }
+
 }

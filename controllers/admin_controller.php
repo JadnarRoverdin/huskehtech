@@ -28,7 +28,7 @@ Class AdminController
 
   public function updatePost()
   {
-    $message = Database::updatePost($_POST['postID'], $_POST['postName'],$_POST['postDate'],$_POST['postTime'],$_POST['content'], $_POST['contentID']);
+    $message = Post::updatePost($_POST['postID'], $_POST['postName'],$_POST['postDate'],$_POST['postTime'],$_POST['content'], $_POST['contentID']);
     require_once('views/admin/index.php');
   }
 
