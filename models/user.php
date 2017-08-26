@@ -5,8 +5,8 @@ class User
   public static function insertUser($fname, $lname, $email, $password)
   {
     $db = Db::getInstance();
-    $stmt = $db->prepare("INSERT INTO user (firstName, lastName,email,password) VALUES(?,?,?,?)");
-    $data = array($fname, $lname, $email, $password);
+    $stmt = $db->prepare("INSERT INTO user (firstName, lastName,email,password,token) VALUES(?,?,?,?,?)");
+    $data = array($fname, $lname, $email, $password,'test');
     $stmt->execute($data);
     return  "User has been registered";
   }

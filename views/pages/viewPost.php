@@ -19,7 +19,7 @@
       echo "</div>";
       echo "<div>";
       foreach($post->content as $content)
-        echo "<br>".$content."</div><br>";
+        echo "<br>".$content[1]."</div><br>";
 
       echo "<div>";
       if(sizeof($post->images) >0)
