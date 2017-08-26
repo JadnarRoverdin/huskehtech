@@ -1,5 +1,7 @@
 <?php
 require_once('models/post.php');
+require_once('models/tag.php');
+require_once('models/catagory.php');
   function call ($controller, $action)
   {
     require_once("controllers/".$controller."_controller.php");
@@ -34,7 +36,7 @@ require_once('models/post.php');
   $controllers = array (  'pages'     => ['home', 'index', 'viewPost', 'about', 'portfolio', 'sandbox','mobilelab','services','food'],
                           'post'      => ['index', 'about', 'error', 'viewPost', 'getByTag'],
                           'portfolio' => ['index', 'error', 'viewPost','getByTag'],
-                          'admin'     => ['index', 'addPost','insertPost', 'addTag','insertTag', 'editPost','updatePost','removePost','deletePost', 'error'],
+                          'admin'     => ['index', 'addPost','insertPost','insertCat','linkTag','linktagtocat','addCat', 'addTag','insertTag', 'editPost','updatePost','removePost','deletePost', 'error'],
                           'evaluation'=> ['index', 'addCriteria', 'insertCriteria', 'addCriteriaSet', 'insertCriteriaSet'],
                           'user'      => ['login','addUser','insertUser', 'logout']);
 

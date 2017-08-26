@@ -8,9 +8,7 @@ Class AdminController
   }
   public function addPost()
   {
-    $taglists = Admin::getTags();
-    $tagNames = $taglists[0];
-    $tagIDs = $taglists[1];
+    $tags = Tag::getTags();
     require_once('views/admin/newPost.php');
   }
 
@@ -51,7 +49,7 @@ Class AdminController
     $value = $_POST['yesno'];
     if($value == 'yes')
     {
-      $message = Database::deletePost($_POST['postID']);
+      $message = Post::deletePost($_POST['postID']);
       require_once('views/admin/index.php');
     }
     else
@@ -107,7 +105,7 @@ Class AdminController
     $taglisting = [];
     foreach($_POST['taglist'] as $selected)
       $taglisting[] = $selected;
-    $message = Admin::insertPost($_POST['postname'], $_POST['posttext'], $taglisting, $baseNames,$targetFiles, $_POST['date'], $_POST['time'] );
+    $message = Post::insertPost($_POST['postname'], $_POST['posttext'], $taglisting, $baseNames,$targetFiles, $_POST['date'], $_POST['time'] );
     require_once('views/admin/index.php');
   }
   public function addTag()
@@ -115,12 +113,42 @@ Class AdminController
     require_once('views/admin/newTag.php');
   }
 
-  public function insertTag()
+  public function addCat()
   {
-    $message = Admin::insertTag($_POST['tagname'], $_POST['tagtext']);
+
+    require_once('views/admin/newCat.php');
+  }
+
+  public function linkTag()
+  {
+    $tags = Tag::getTags();
+    $cats = Catagory::getCats();
+    require_once('views/admin/linkTag.php');
+  }
+
+  public function attachtagtocat()
+  {
+    $message = Tag::associateTagWithCatagory($_POST['catID'], $_POST['tagIDs']);
     require_once('views/admin/index.php');
   }
 
+  public function insertTag()
+  {
+    $message = Tag::insertTag($_POST['tagname'], $_POST['tagtext']);
+    require_once('views/admin/index.php');
+  }
+
+  public function insertCat()
+  {
+    $message = Catagory::insertCat($_POST['catname'], $_POST['catdesc']);
+    require_once('views/admin/index.php');
+  }
+  public function linktagtocat()
+  {
+    $message = Tag::associateTagWithCatagory($_POST['cat'],$_POST['tags']);
+    require_once('views/admin/index.php');
+
+  }
 
   public function error()
   {

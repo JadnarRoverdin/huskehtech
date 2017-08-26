@@ -40,9 +40,9 @@ $(document).ready(function(){
   <div>
   Choose Tags:<br> <select id='scroller' class='input' multiple name="taglist[]" required>
                           <?php
-                          for($i = 0; $i < sizeof($tagNames);$i++)
+                          foreach($tags as $tag)
                           {
-                            echo "<option value ='".$tagIDs[$i]."'>".$tagNames[$i]."</option>";
+                            echo "<option value ='".$tag->id."'>".$tag->title."</option>";
                           }
                           ?>
                       </select><br>

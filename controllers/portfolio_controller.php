@@ -3,8 +3,8 @@ Class PortfolioController
 {
   public function index()
   {
-    $posts = Post::tag("Portfolio");
-    require_once('views/pages/index.php');
+    $catagories = Catagory::getCats();
+    require_once('views/portfolio/index.php');
   }
 
   public function viewPost()
