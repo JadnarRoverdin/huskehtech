@@ -127,7 +127,7 @@ Class Post
       $output = array();
       while($r = $stmt->fetch(PDO::FETCH_ASSOC, 0))
       {
-        $output[] = array($r['contentID'], nl2br(htmlspecialchars($r['contentContents'])));
+        $output[] = array($r['contentID'], nl2br($r['contentContents']));
       }
       return $output;
     }
