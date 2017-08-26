@@ -116,7 +116,7 @@ Class Post
   public static function getContent($postID)
   {
     $db = Db::getInstance();
-    $sql = "SELECT contentContents FROM content WHERE postID =?";
+    $sql = "SELECT contentID, contentContents FROM content WHERE postID =?";
     $data = array($postID);
 
 
@@ -124,7 +124,12 @@ Class Post
     {
       $stmt = $db->prepare($sql);
       $results = $stmt->execute($data);
-      return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+      $output = array();
+      while($r = $stmt->fetch(PDO::FETCH_ASSOC, 0))
+      {
+        $output[] = array($r['contentID'], $r['contentContents']);
+      }
+      return $output;
     }
     catch(PDOException $e)
     {

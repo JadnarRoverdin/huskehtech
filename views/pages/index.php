@@ -33,7 +33,7 @@
                   <?php
                     if($post->content >0)
                       foreach($post->content as $content)
-                        echo $content;
+                        echo $content[1];
                   ?>
               </td>
             </tr>

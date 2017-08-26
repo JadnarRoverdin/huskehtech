@@ -22,14 +22,7 @@ Class AdminController
   public function editPost()
   {
     $message = "EDIT THIS POST";
-    $postData = Database::getPost($_GET['postID']);
-    $postName = $postData[0];
-    $postDate = $postData[1];
-    $postTime = $postData[2];
-    $postContents = $postData[3];
-    $postContentsIDs = $postData[4];
-    $postImages = $postData[5];
-    $postID = $_GET['postID'];
+    $post = Post::getPost($_GET['postID']);
     require_once('views/admin/editPost.php');
   }
 

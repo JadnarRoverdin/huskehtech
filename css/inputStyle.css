@@ -11,6 +11,7 @@
   -moz-box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
   box-shadow: inset 0px 0px 20px 0px rgba(100, 120, 150, 1);
   font-weight:bold;
+  font-size:15px;
   transition: box-shadow 0.25s ease-in-out, border-color 0.25s ease-in-out;
 }
 
@@ -87,7 +88,7 @@
    border-width: 2px;
    border-right:none;
    border-left:none;
-   border-radius: 20px 50px 20px 50px;
+   border-radius: 50px 20px 50px 20px;
    text-align: center;
    height:30px;
    width:90%;
