@@ -19,13 +19,7 @@ Class PortfolioController
 
   public function getByTag()
   {
-    $fetchlist = array($_GET['tagName']);
-    $postList = Database::getByTag($fetchlist);
-    $postNames = $postList[0];
-    $postContents = $postList[1];
-    $postIDs = $postList[2];
-    $postDates = $postList[3];
-    $postImages= $postList[4];
+    $posts = Post::tag($_GET['tagName']);
     require_once('views/pages/index.php');
   }
 
