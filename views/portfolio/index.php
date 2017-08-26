@@ -5,10 +5,12 @@
   if($catagories)
     foreach($catagories as $cat)
     {
+      echo "<div class='postCard'>";
       echo "<h3>".$cat->title."</h3><br>";
       foreach($cat->tags as $tag)
       {
         echo "<a href='?controller=portfolio&action=getByTag&tagName=".$tag->title."'>".$tag->title."</a><br>";
       }
+      echo "</div>";
     }
   ?>
