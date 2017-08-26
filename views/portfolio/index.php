@@ -2,6 +2,7 @@
 <script src ="java/postTrimmer.js"></script>
 <div>
   <?php
+  if($catagories)
     foreach($catagories as $cat)
     {
       echo "<h3>".$cat->title."</h3><br>";
