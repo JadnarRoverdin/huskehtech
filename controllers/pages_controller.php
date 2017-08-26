@@ -35,14 +35,8 @@ Class PagesController
   }
   public function viewPost()
   {
-    $tagList = Database::getTags($_GET['postID']);
-    $postData = Database::getPost($_GET['postID']);
-    $postName = $postData[0];
-    $postDate = $postData[1];
-    $postTime = $postData[2];
-    $postContent = $postData[3];
-    $postContentIDs=$postData[4];
-    $postImages = $postData[5];
+    $tagList = Post::getTags($_GET['postID']);
+    $post = Post::getPost($_GET['postID']);
     require_once('views/pages/viewPost.php');
   }
 }

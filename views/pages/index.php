@@ -22,7 +22,7 @@
                     foreach($post->images as $image)
                     {
                       if(substr($image,0,15) === "img/postImages/" && strlen($image) > 15)
-                      echo "<a href'".$image."'><img src='".$image."' width='200'></a>";
+                      echo "<a href='".$image."' target='_blank'><img src='".$image."' width='200'></a>";
                     }
                     echo "</td>";
                   }
