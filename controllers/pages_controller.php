@@ -14,6 +14,7 @@ Class PagesController
 
   public function about()
   {
+    $user = User::getUser(1);
     require_once('views/pages/about.php');
   }
 

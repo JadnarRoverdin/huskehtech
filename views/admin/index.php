@@ -17,6 +17,7 @@
       </td>
       <td>
         <a class='menuLink' href = '?controller=user&action=addUser'><li>Register User</li></a>
+        <a class='menuLink' href = '?controller=user&action=editUser'><li>Edit User</li></a>
       </td>
     </tr>
   </table>

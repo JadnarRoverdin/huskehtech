@@ -12,7 +12,7 @@
         <a class='menuLink' href = '?controller=pages&action=sandbox'><li>Sandbox</li></a>
         <!-- <li class='menuLink'><a class='menuLink' href = '?controller=evaluation&action=index'>Evaluation</a></li> -->
         <?php
-          if(isset($_SESSION['admin']) && $_SESSION['admin'] == "1")
+          if(isset($_SESSION['user']) && $_SESSION['user']->admin == "1")
           {
             echo "<a class='menuLink' href = '?controller=admin&action=index'><li>Administration</li></a>";
           }
@@ -26,7 +26,7 @@
   <tr>
     <td class='contentAlt' style='width:200px'>
         <?php
-        if(!isset($_SESSION['admin']))
+        if(!isset($_SESSION['user']))
         {
           echo "<form action='?controller=user&action=login' method='post'>";
           echo "<input class='input' type='text' name='username' placeholder='Email'><br>";
@@ -38,7 +38,8 @@
         else
         {
           echo "Logged in as: <br>";
-          echo $_SESSION['fname']." ".$_SESSION['lname']."<br>";
+          $user = $_SESSION['user'];
+          echo $user->firstName." ".$user->lastName."<br>";
 
           echo "<form action='?controller=user&action=logout' method='post'><input class='input' type='submit' value='LogOut'></a>";
         }

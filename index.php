@@ -1,5 +1,5 @@
 
-<?php session_start();?>
+<?php require_once('models/user.php'); session_start();?>
 <!DOCTYPE html>
 <html id="scroller">
 

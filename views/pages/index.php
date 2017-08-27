@@ -12,7 +12,7 @@
             <tr>
               <?php if($areImages) echo "<td class='postLinkBack'>"; else echo "<td class='postLinkBackAlt'>"; ?>
                 <a class='postLink' href='?controller=pages&action=viewPost&postID=<?php echo $post->id; ?>'><?php echo $post->title; ?></a>
-                <br><?php echo $post->author; ?>
+                <br><a href='?controller=user&action=viewProfile&userID=<?php echo $post->author->id;?>'><?php echo $post->author->firstName." ".$post->author->lastName; ?></a>
                 <br><?php echo $post->date; ?>
               </td>
               <?php

@@ -78,7 +78,7 @@ Class Post
       $post = $stmt->fetch(PDO::FETCH_ASSOC);
       $contents = Post::getContent($postID);
       $tags = Post::getTags($postID);
-      $author = Post::getAuthor($post['author']);
+      $author = User::getUser($post['author']);
       $images = Post::getImages($postID);
       return new Post($postID, $post['postName'], $post['postDate'],$contents,[],$author,$images,$tags);
     }

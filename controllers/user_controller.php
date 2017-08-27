@@ -14,30 +14,40 @@ class UserController
 
   public function login()
   {
-    User::login($_POST['username'], $_POST['password']);
+    $_SESSION['user'] = User::login($_POST['username'], $_POST['password']);
     header('Location: index.php');
-    // $fetchlist = array("News");
-    // $postList = Database::getByTag($fetchlist);
-    // $postNames = $postList[0];
-    // $postContents = $postList[1];
-    // $postIDs = $postList[2];
-    // $postDates = $postList[3];
-    // $postImages= $postList[4];
-    // require_once('views/pages/index.php');
   }
 
   public function logout()
   {
     User::logout();
     header('Location: index.php');
-    // $fetchlist = array("News");
-    // $postList = Database::getByTag($fetchlist);
-    // $postNames = $postList[0];
-    // $postContents = $postList[1];
-    // $postIDs = $postList[2];
-    // $postDates = $postList[3];
-    // $postImages= $postList[4];
-    // require_once('views/pages/index.php');
+  }
+
+  public function viewProfile()
+  {
+    $user = User::getUser($_GET['userID']);
+    require_once('views/profile/viewProfile.php');
+  }
+
+  public function editUser()
+  {
+    $message;
+    if(!isset($_POST['userID']))
+      $user = User::getUser($_SESSION['user']->id);
+    else
+    {
+      if($_POST['profileID'] != '')
+      {
+        $message = Profile::update($_POST['userID'], $_POST['dob'], $_POST['location'],$_POST['biography'],$_POST['avatar']);
+      }
+      else
+      {
+        $message = Profile::insert($_POST['userID'], $_POST['dob'], $_POST['location'],$_POST['biography'],$_POST['avatar']);
+      }
+      $user = User::getUser($_SESSION['user']->id);
+    }
+    require_once('views/admin/editUser.php');
   }
 
 }

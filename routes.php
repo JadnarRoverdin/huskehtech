@@ -1,7 +1,10 @@
 <?php
+
 require_once('models/post.php');
 require_once('models/tag.php');
 require_once('models/catagory.php');
+require_once('models/profile.php');
+
   function call ($controller, $action)
   {
     require_once("controllers/".$controller."_controller.php");
@@ -26,7 +29,6 @@ require_once('models/catagory.php');
         $controller = new EvaluationController();
         break;
       case 'user':
-        require_once('models/user.php');
         $controller = new UserController();
         break;
     }
@@ -38,7 +40,7 @@ require_once('models/catagory.php');
                           'portfolio' => ['index', 'error', 'viewPost','getByTag'],
                           'admin'     => ['index', 'addPost','insertPost','insertCat','linkTag','linktagtocat','addCat', 'addTag','insertTag', 'editPost','updatePost','removePost','deletePost', 'error'],
                           'evaluation'=> ['index', 'addCriteria', 'insertCriteria', 'addCriteriaSet', 'insertCriteriaSet'],
-                          'user'      => ['login','addUser','insertUser', 'logout']);
+                          'user'      => ['login','addUser','editUser', 'insertUser', 'logout', 'viewProfile']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))
