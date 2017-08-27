@@ -58,7 +58,7 @@ Class Tag
   public static function catagory($catID)
   {
     $db = Db::getInstance();
-    $sql = "SELECT * FROM tag WHERE tagID IN (SELECT tagID FROM catagory_tag WHERE catagory_tag.catagoryID = ?)";
+    $sql = "SELECT * FROM tag WHERE tagID IN (SELECT tagID FROM catagory_tag WHERE catagory_tag.catagoryID = ?) ORDER BY tag.tagName";
 
     $stmt = $db->prepare($sql);
     $data = array($catID);

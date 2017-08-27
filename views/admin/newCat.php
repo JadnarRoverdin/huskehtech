@@ -2,7 +2,7 @@
 <div>
 <form action='?controller=admin&action=insertCat' method="post">
   Name of catagory:<br> <input class='input' type='text' name='catname'><br>
-  Description of Tag:<br> <input class='input' type='text' name='catdesc'><br>
+  Description of catagory:<br> <input class='input' type='text' name='catdesc'><br>
 
   <input type='submit' value ='Submit'>
 </form>
