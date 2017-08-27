@@ -4,6 +4,7 @@ require_once('models/post.php');
 require_once('models/tag.php');
 require_once('models/catagory.php');
 require_once('models/profile.php');
+require_once('models/upload.php');
 
   function call ($controller, $action)
   {

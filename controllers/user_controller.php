@@ -39,11 +39,11 @@ class UserController
     {
       if($_POST['profileID'] != '')
       {
-        $message = Profile::update($_POST['userID'], $_POST['dob'], $_POST['location'],$_POST['biography'],$_POST['avatar']);
+        $message = Profile::update($_POST['userID'], $_POST['dob'], $_POST['location'],$_POST['biography'],$_FILES['avatar']);
       }
       else
       {
-        $message = Profile::insert($_POST['userID'], $_POST['dob'], $_POST['location'],$_POST['biography'],$_POST['avatar']);
+        $message = Profile::insert($_POST['userID'], $_POST['dob'], $_POST['location'],$_POST['biography'],$_FILES['avatar']);
       }
       $user = User::getUser($_SESSION['user']->id);
     }

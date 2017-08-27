@@ -25,7 +25,8 @@ Class Profile
     $stmt = $db->prepare($sql);
     try
     {
-      $data = array($userID, $dob, $loc, $bio, $ava);
+      $targetFile = Upload::avatarUpload($ava);
+      $data = array($dob, $loc, $bio, $targetFile, $userID);
       $stmt->execute($data);
       $output = "Profile Creation successful";
     }
@@ -64,7 +65,8 @@ Class Profile
     $stmt = $db->prepare($sql);
     try
     {
-      $data = array($dob, $loc, $bio, $ava, $userID);
+      $targetFile = Upload::avatarUpload($ava);
+      $data = array($dob, $loc, $bio, $targetFile, $userID);
       $stmt->execute($data);
       $output = "Profile UPDATE successful";
     }
