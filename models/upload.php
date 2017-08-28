@@ -26,7 +26,6 @@ class Upload
     {
       $message =  "";
     }
-    echo $target_file;
     return $message;
   }
 }
