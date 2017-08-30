@@ -24,7 +24,7 @@ Class Post
   }
   //  ==================================================================================== INSERT POST
 
-  public static function insertPost($postName, $postContent, $postCatagory, $imageNames, $imagePath,$date,$time)
+  public static function insertPost($postName, $postContent, $postCatagory, $imageNames, $imagePath,$date,$time, $userID)
   {
     $message="";
 
@@ -33,7 +33,7 @@ Class Post
       $db = Db::getInstance();                                                                                //Create a database object for PDO
       $stmt = $db->prepare("INSERT INTO  post (postName, postDate, postTime,author) VALUES (?,?,?,?)");
       echo $date;              //Insert post name, date and time into the database
-      $data = array($postName, $date, $time,$_SESSION['userID']);                                                 //Collects name from input, and gets current date and time
+      $data = array($postName, $date, $time,$userID);                                                 //Collects name from input, and gets current date and time
       $stmt->execute($data);
       $lastInsert = $db->lastInsertId();                                                                      //get the post's ID
       $stmt = $db->prepare("INSERT INTO content (contentContents, postID) VALUES (?,?)");                     //Insert the post content into the database

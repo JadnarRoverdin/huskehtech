@@ -105,7 +105,7 @@ Class AdminController
     $taglisting = [];
     foreach($_POST['taglist'] as $selected)
       $taglisting[] = $selected;
-    $message = Post::insertPost($_POST['postname'], $_POST['posttext'], $taglisting, $baseNames,$targetFiles, $_POST['date'], $_POST['time'] );
+    $message = Post::insertPost($_POST['postname'], $_POST['posttext'], $taglisting, $baseNames,$targetFiles, $_POST['date'], $_POST['time'], $_SESSION['user']->id );
     require_once('views/admin/index.php');
   }
   public function addTag()
