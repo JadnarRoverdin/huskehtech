@@ -40,7 +40,7 @@
             <tr>
               <td colspan='2' class='adminLink'>
                 <?php
-                  if(isset($_SESSION['admin']) && $_SESSION['admin']=="1")
+                  if(isset($_SESSION['user']) && $_SESSION['user']->admin=="1")
                   {
                     echo "<a href='?controller=admin&action=editPost&postID=".$post->id."'>Edit</a> ";
                     echo "<a href='?controller=admin&action=removePost&postID=".$post->id."'>Delete</a>";
