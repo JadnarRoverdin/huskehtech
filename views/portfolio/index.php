@@ -5,7 +5,7 @@
   if($catagories)
     foreach($catagories as $cat)
     {
-      if($cat->title != "Academic")
+      if($cat->title != "Academics")
       {
         echo "<div class='postCard'>";
         echo "<h3>".$cat->title."</h3><br>";
