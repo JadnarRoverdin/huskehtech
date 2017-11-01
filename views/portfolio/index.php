@@ -5,8 +5,8 @@
   if($catagories)
     foreach($catagories as $cat)
     {
-      if($cat->title != "Academics")
-      {
+    //  if($cat->title != "Academics")
+    //  {
         echo "<div class='postCard'>";
         echo "<h3>".$cat->title."</h3><br>";
 
@@ -15,6 +15,6 @@
           echo "<a href='?controller=portfolio&action=getByTag&tagName=".$tag->title."'>".$tag->title."</a><br>";
         }
         echo "</div>";
-      }
+      //}
     }
   ?>
