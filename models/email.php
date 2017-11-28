@@ -1,7 +1,7 @@
 <?php
 Class Email
 {
-  public function send($fromemail, $fromname,$text)
+  public static function send($fromemail, $fromname,$text)
   {
     $to = "jadnarroverdin@gmail.com";
     $subject = 'HT-CONTACT from '.$fromname;
