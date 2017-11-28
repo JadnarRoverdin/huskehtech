@@ -10,7 +10,7 @@
         <!-- <li class='menuLink'><a class='menuLink' href = '?controller=pages&action=services'>Services</a></li> -->
         <!-- <li class='menuLink'><a href = '?controller=pages&action=food'>Food</a></li> -->
         <a class='menuLink' href = '?controller=pages&action=sandbox'><li>Sandbox</li></a>
-        <!-- <li class='menuLink'><a class='menuLink' href = '?controller=evaluation&action=index'>Evaluation</a></li> -->
+        <a class='menuLink' href = '?controller=pages&action=contact'><li>Contact</li></a>
         <?php
           if(isset($_SESSION['user']) && $_SESSION['user']->admin == "1")
           {

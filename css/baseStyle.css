@@ -28,27 +28,24 @@ html, body
   height:100%;
   margin: 0;
   padding:0;
+
+  /*z-index:-2;*/
 }
 
 html
 {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-repeat:no-repeat;
-  background: rgb(0,50, 130);
-  background: -webkit-linear-gradient(top, black,rgb(0,50, 130));
-  background: -o-linear-gradient(top, black, rgb(0,50, 130));
-  background: -moz-linear-gradient(top, black,rgb(0,50, 130));
-  background: linear-gradient(to bottom black, rgb(0,50, 130) fixed);
-  background-attachment:fixed;
+  background-color:black;
+  background-repeat:repeat;
+  background-image: url("../img/elements/sharpgrid.png");
+  background-attachment:scroll;
   font-family:"Arial Black", Gadget, sans-serif;
   height:100%;
+  /*z-index:5;*/
 }
 
 body:after
 {
+
   content:"";
   display:block;
   position:fixed;
@@ -201,7 +198,7 @@ div
 
 div.standardtext
 {
-  color:white;
+  color:black;
 }
 
 

@@ -5,6 +5,7 @@ require_once('models/tag.php');
 require_once('models/catagory.php');
 require_once('models/profile.php');
 require_once('models/upload.php');
+require_once('models/email.php');
 
   function call ($controller, $action)
   {
@@ -36,7 +37,7 @@ require_once('models/upload.php');
     $controller->{$action}();
   }
 
-  $controllers = array (  'pages'     => ['home', 'index', 'viewPost', 'about', 'portfolio', 'sandbox','mobilelab','services','food'],
+  $controllers = array (  'pages'     => ['home', 'index', 'viewPost', 'about', 'portfolio', 'contact', 'sandbox','mobilelab','services','food'],
                           'post'      => ['index', 'about', 'error', 'viewPost', 'getByTag'],
                           'portfolio' => ['index', 'error', 'viewPost','getByTag'],
                           'admin'     => ['index', 'addPost','insertPost','insertCat','linkTag','linktagtocat','addCat', 'addTag','insertTag', 'editPost','updatePost','removePost','deletePost', 'error'],
