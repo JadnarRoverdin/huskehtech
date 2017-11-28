@@ -48,7 +48,7 @@ Class PagesController
       $email = $_POST['email'];
       $name = $_POST['firstname']." ".$_POST['lastname'];
       $message= $_POST['message'];
-      Email::send($email, $name, $message)
+      Email::send($email, $name, $message);
     }
     require_once('views/pages/contact.php');
   }
