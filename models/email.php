@@ -1,8 +1,6 @@
 <?php
-class Email
+Class Email
 {
-
-
   public send($fromemail, $fromname,$text)
   {
     $to = "jadnarroverdin@gmail.com";
