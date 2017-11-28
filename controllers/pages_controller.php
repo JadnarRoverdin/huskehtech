@@ -43,12 +43,13 @@ Class PagesController
 
   public function contact()
   {
+    $result="";
     if(isset($_POST['email']))
     {
       $email = $_POST['email'];
       $name = $_POST['firstname']." ".$_POST['lastname'];
       $message= $_POST['message'];
-      Email::send($email, $name, $message);
+      $result = Email::send($email, $name, $message);
     }
     require_once('views/pages/contact.php');
   }
