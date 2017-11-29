@@ -15,7 +15,7 @@ Class Post
   {
     $this->id       = $idin;
     $this->title    = $titlein;
-    $this->date     = $datein;
+    $this->date     = date("m-d-Y", strtotime($datein));
     $this->content  = $contentin;
     $this->files    = $filesin;
     $this->author   = $authorin;
