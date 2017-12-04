@@ -43,7 +43,12 @@ header
   background-position: 80px center;
   background-size: 160px 100px;
   /*opacity: 0.8;*/
+}
 
+footer
+{
+  width:100%;
+  text-align:center;
 }
 div.spacer
 {
@@ -72,6 +77,11 @@ html
   background-attachment:scroll;
   font-family:"Arial Black", Gadget, sans-serif;
   height:100%;
+}
+
+#content
+{
+  text-align:center;
 }
 
 body:after
