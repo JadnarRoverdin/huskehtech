@@ -4,7 +4,7 @@
   <input class='input' type='email' name='email' placeholder='Your Email Address' required><br>
   <input class='input' type='text' name='firstname' placeholder='First Name' required>
   <input class='input' type='text' name='lastname' placeholder='Last Name' required><br>
-  <textarea class='input' name='message' placeholder='Message' rows='10' cols='50' required></textarea><br>
+  <textarea id='scroller' class='input' name='message' placeholder='Message' rows='10' cols='50' required></textarea><br>
   <input class='input' type='submit' value='Send Email'>
 
 </form>
