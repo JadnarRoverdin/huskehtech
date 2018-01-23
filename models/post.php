@@ -259,5 +259,24 @@ Class Post
     }
 
   }
+  //  ==================================================================================== Delete POST
+
+  public static function deletePost($postID)
+  {
+
+    $db = Db::getInstance();
+    $sql = "DELETE FROM post WHERE postID = ? ";
+    $data = array($postID);
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $result = $stmt->execute($data);
+    }
+    catch(PDOException $e)
+    {
+      echo "ERROR in deletePost: " . $e->getMessage();
+    }
+
+  }
 
 }
