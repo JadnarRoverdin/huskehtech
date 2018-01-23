@@ -32,8 +32,8 @@ Class AdminController
 
   public function removePost()
   {
-    $postData = Database::getPost($_GET['postID']);
-    $postName = $postData[0];
+    $postData = Post::getPost($_GET['postID']);
+    $postName = $postData->title;
     $postID = $_GET['postID'];
     require_once('views/admin/confirmDelete.php');
   }
