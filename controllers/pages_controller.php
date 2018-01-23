@@ -3,7 +3,7 @@ Class PagesController
 {
   public function index()
   {
-    $posts = Post::tag("News");
+    $posts = Post::all();
     require_once('views/pages/index.php');
   }
 
