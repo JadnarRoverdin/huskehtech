@@ -10,6 +10,7 @@ Class Post
   public $author;
   public $images;
   public $tags;
+  public $rawdate;
 
 //  ==================================================================================== POST OBJECT
   public function __construct($idin, $titlein, $datein, $timein,$contentin, $filesin, $authorin, $imagesin, $tagsin)
@@ -23,6 +24,7 @@ Class Post
     $this->author   = $authorin;
     $this->images   = $imagesin;
     $this->tags     = $tagsin;
+    $this->$rawdate = $datein;
   }
   //  ==================================================================================== INSERT POST
 

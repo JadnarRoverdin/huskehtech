@@ -11,7 +11,7 @@ echo $message ."<br>";
   <form action ='?controller=admin&action=updatePost' method='post'>
     <input type='hidden' value='<?php echo $post->id; ?>' name='postID'>
     <input class='input'type='text' value='<?php echo $post->title; ?>' name ='postName'><br>
-    <input class='input' type='date' value='<?php echo $post->date; ?>' name ='postDate'><br>
+    <input class='input' type='date' value='<?php echo $post->rawdate; ?>' name ='postDate'><br>
     <input class='input' type='time' value='<?php echo $post->time; ?>' name ='postTime'><br>
     <div>
       <?php
