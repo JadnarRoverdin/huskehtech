@@ -245,7 +245,7 @@ Class Post
     $sql = "UPDATE post SET postName = ?, postDate = ?, postTime = ? WHERE postID = ? ";
     $sql2 = "UPDATE content SET contentContents = ? WHERE postID = ?";
     $data = array($postName, $postDate, $postTime, $postID);
-    $data2 = array($postContent, $postID);
+    $data2 = array($postContent[0], $postID);
     try
     {
       $stmt = $db->prepare($sql);
