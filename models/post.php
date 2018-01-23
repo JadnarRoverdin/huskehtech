@@ -237,7 +237,22 @@ Class Post
   public static function updatePost($postID, $postName, $postDate, $postTime, $postContent, $postContentID)
   {
 
-
+    $db = Db::getInstance();
+    $sql = "UPDATE post SET postName = ?, postDate = ?, postTime = ? WHERE postID = ? ";
+    $sql2 = "UPDATE content SET contentContents = ? WHERE postID = ?";
+    $data = array($postName, $postDate, $postTime, $postID);
+    $data2 = array($postContent, $postID);
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $result = $stmt->execute($data);
+      $stmt = $db->prepare($sql2);
+      $result = $stmt->execute($data2);
+    }
+    catch(PDOException $e)
+    {
+      echo "ERROR in updatePost: " . $e->getMessage();
+    }
 
   }
 
