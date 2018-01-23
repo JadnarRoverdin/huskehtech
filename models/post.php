@@ -92,7 +92,7 @@ Class Post
     }
   }
 //  ==================================================================================== GET ALL POSTS
-  public function all()
+  public static function all()
   {
     $db = Db::getInstance();
     $sql = "SELECT postID FROM post ORDER BY post.postDate DESC, post.postTime DESC";
