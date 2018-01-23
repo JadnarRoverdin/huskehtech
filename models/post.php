@@ -24,7 +24,7 @@ Class Post
     $this->author   = $authorin;
     $this->images   = $imagesin;
     $this->tags     = $tagsin;
-    $this->$rawdate = $datein;
+    $this->rawdate = $datein;
   }
   //  ==================================================================================== INSERT POST
 
