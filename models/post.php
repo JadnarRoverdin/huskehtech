@@ -17,7 +17,7 @@ Class Post
     $this->id       = $idin;
     $this->title    = $titlein;
     $this->date     = date("m-d-Y", strtotime($datein));
-    $this->time     = date_format(date_create($timein), 'g:i a');
+    $this->time     = date("g:i a", strtotime($timein));
     $this->content  = $contentin;
     $this->files    = $filesin;
     $this->author   = $authorin;
