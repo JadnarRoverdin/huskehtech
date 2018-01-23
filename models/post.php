@@ -4,6 +4,7 @@ Class Post
   public $id;
   public $title;
   public $date;
+  public $time;
   public $content;
   public $files;
   public $author;
@@ -11,11 +12,12 @@ Class Post
   public $tags;
 
 //  ==================================================================================== POST OBJECT
-  public function __construct($idin, $titlein, $datein, $contentin, $filesin, $authorin, $imagesin, $tagsin)
+  public function __construct($idin, $titlein, $datein, $timein,$contentin, $filesin, $authorin, $imagesin, $tagsin)
   {
     $this->id       = $idin;
     $this->title    = $titlein;
     $this->date     = date("m-d-Y", strtotime($datein));
+    $this->time     = date_format(date_create($timein), 'g:i a');
     $this->content  = $contentin;
     $this->files    = $filesin;
     $this->author   = $authorin;
@@ -80,7 +82,7 @@ Class Post
       $tags = Post::getTags($postID);
       $author = User::getUser($post['author']);
       $images = Post::getImages($postID);
-      return new Post($postID, $post['postName'], $post['postDate'],$contents,[],$author,$images,$tags);
+      return new Post($postID, $post['postName'], $post['postDate'],$post['postTime'],$contents,[],$author,$images,$tags);
     }
     catch(PDOException $e)
     {
