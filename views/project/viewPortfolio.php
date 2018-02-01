@@ -3,7 +3,6 @@
 
   if(isset($_SESSION['user']))
     $user = unserialize($_SESSION['user']);
-    echo $projects;
   foreach($projects as $p)
   {
     $currImageCount =0;
