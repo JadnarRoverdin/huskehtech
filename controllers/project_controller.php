@@ -101,7 +101,7 @@ Class ProjectController
           }
         }
       }
-    echo("<script>location.href = '?controller=project&action=viewProject&id=$projectID';</script>");
+    //echo("<script>location.href = '?controller=project&action=viewProject&id=$projectID';</script>");
   }
 //===================================================================================
   public function delete()
