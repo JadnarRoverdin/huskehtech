@@ -37,8 +37,9 @@ else
   </header>
 
   <body>
-    <div class='push'></div>
-    <div class='overlay'></div>
+
+
+    <!-- <div class='push'></div> -->
     <div id='sessionMessage error'>
       <?php
         if(isset($_SESSION['message']))
@@ -56,6 +57,7 @@ else
   <footer>
     Site design and contents ©HuskehTech Industries 2018
   </footer>
+  <div class='overlay'></div>
 
 </html>
 <?php } ?>
