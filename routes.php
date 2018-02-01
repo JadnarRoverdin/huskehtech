@@ -1,12 +1,10 @@
 <?php
-
-require_once('models/post.php');
-require_once('models/tag.php');
-require_once('models/catagory.php');
-require_once('models/profile.php');
-require_once('models/upload.php');
-require_once('models/email.php');
-
+  date_default_timezone_set('America/New_York');
+  require_once("models/post.php");
+  require_once("models/project.php");
+  require_once("models/portfolio.php");
+  require_once("models/content.php");
+  require_once("models/tag.php");
   function call ($controller, $action)
   {
     require_once("controllers/".$controller."_controller.php");
@@ -16,33 +14,29 @@ require_once('models/email.php');
       case 'pages':
         $controller = new PagesController();
         break;
-      case 'post':
-        $controller = new PagesController();
-        break;
-      case 'portfolio':
-          $controller = new PortfolioController();
-          break;
-      case 'admin':
-        require_once('models/admin.php');
-        $controller = new AdminController();
-        break;
-      case 'evaluation':
-        require_once('models/evaluation.php');
-        $controller = new EvaluationController();
-        break;
       case 'user':
         $controller = new UserController();
         break;
+      case 'news':
+        $controller = new NewsController();
+        break;
+      case 'project':
+        $controller = new ProjectController();
+        break;
+      case 'submission':
+        $controller = new SubmissionController();
+        break;
+
+
     }
     $controller->{$action}();
   }
 
-  $controllers = array (  'pages'     => ['home', 'index', 'viewPost', 'about', 'portfolio', 'contact', 'sandbox','mobilelab','services','food'],
-                          'post'      => ['index', 'about', 'error', 'viewPost', 'getByTag'],
-                          'portfolio' => ['index', 'error', 'viewPost','getByTag'],
-                          'admin'     => ['index', 'addPost','insertPost','insertCat','linkTag','linktagtocat','addCat', 'addTag','insertTag', 'editPost','updatePost','removePost','deletePost', 'error'],
-                          'evaluation'=> ['index', 'addCriteria', 'insertCriteria', 'addCriteriaSet', 'insertCriteriaSet'],
-                          'user'      => ['login','addUser','editUser', 'insertUser', 'logout', 'viewProfile']);
+  $controllers = array (  'pages'     => ['home', 'index', 'news', 'portfolio','admin'],
+                          'user'      => ['register', 'resetPassword', 'login', 'logout', 'viewProfile'],
+                          'news'      => ['new', 'update', 'delete'],
+                          'project' => ['insert', 'viewPortfolio', 'viewProject', 'update', 'delete', 'upload', 'getByTag'],
+                          'submission'=> ['submit', 'delete'] );
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))
@@ -51,5 +45,4 @@ require_once('models/email.php');
       call('pages', 'error');
   else
     call('pages', 'error');
-
 ?>

@@ -1,1 +1,1 @@
-<h1 align='center'> ERROR SOMETHING HORRIBLE HAPPENED </h1>
+error

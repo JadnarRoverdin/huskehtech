@@ -1,0 +1,64 @@
+button
+{
+  padding:5px;
+  margin:5px;
+  background-color: white;
+  border: 1px solid black;
+  color:black;
+  font-size: 15px;
+  height: 100%;
+}
+
+button.smalllink
+{
+  height:100%;
+}
+
+input
+{
+  padding:5px;
+  margin:5px;
+  background-color: white;
+  border: 1px solid black;
+  color:black;
+  font-size: 15px;
+  border-radius:5px;
+}
+
+textarea
+{
+  padding:5px;
+  margin:5px;
+  background-color: white;
+  border: 1px solid black;
+  color:black;
+  font-size: 15px;
+  border-radius:5px;
+}
+
+button.menulink
+{
+  width:100px;
+  line-height: 50px;
+  border: 0px solid black;
+  transition: all 0.5s ease-in-out;
+  margin:0;
+  padding:0;
+}
+button.menulink:hover
+{
+
+  color:black;
+  background-color:lightgrey;
+}
+
+button.titleLink
+{
+  font-size:40px;
+  width:200px;
+  line-height: 50px;
+  border: 0px solid black;
+  transition: all 0.5s ease-in-out;
+  margin:0;
+  padding:0;
+}

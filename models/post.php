@@ -6,276 +6,199 @@ Class Post
   public $date;
   public $time;
   public $content;
-  public $files;
   public $author;
-  public $images;
-  public $tags;
+  public $rawtime;
   public $rawdate;
+  public $tags;
 
 //  ==================================================================================== POST OBJECT
-  public function __construct($idin, $titlein, $datein, $timein,$contentin, $filesin, $authorin, $imagesin, $tagsin)
+  public function __construct($idin, $titlein, $datein, $timein,$contentin, $authorin)
   {
     $this->id       = $idin;
     $this->title    = $titlein;
-    $this->date     = date("m-d-Y", strtotime($datein));
-    $this->time     = $timein;
+    $this->date     = date("m/d/Y", strtotime($datein));
+    $this->time     = date_format(date_create($timein), 'g:i a');
     $this->content  = $contentin;
-    $this->files    = $filesin;
-    $this->author   = $authorin;
-    $this->images   = $imagesin;
-    $this->tags     = $tagsin;
-    $this->rawdate = $datein;
+    $this->author   = User::id($authorin)[1];
+    $this->rawdate  = $datein;
+    $this->rawtime  = $timein;
+    $this->tags    = Tag::post($idin)[1];
   }
   //  ==================================================================================== INSERT POST
 
-  public static function insertPost($postName, $postContent, $postCatagory, $imageNames, $imagePath,$date,$time, $userID)
+  public static function insert($title, $content, $date, $time, $authorID)
   {
     $message="";
+    $code;
+    $db = Db::getInstance();
+    $sql = "INSERT INTO  post (title, content, publishDate, publishTime ,author) VALUES (?,?,?,?,?)";
+    $data = array($title, $content, $date, $time, $authorID);
 
     try
     {
-      $db = Db::getInstance();                                                                                //Create a database object for PDO
-      $stmt = $db->prepare("INSERT INTO  post (postName, postDate, postTime,author) VALUES (?,?,?,?)");
-      echo $date;              //Insert post name, date and time into the database
-      $data = array($postName, $date, $time,$userID);                                                 //Collects name from input, and gets current date and time
+      $stmt = $db->prepare($sql);
       $stmt->execute($data);
-      $lastInsert = $db->lastInsertId();                                                                      //get the post's ID
-      $stmt = $db->prepare("INSERT INTO content (contentContents, postID) VALUES (?,?)");                     //Insert the post content into the database
-      $data = array($postContent, $lastInsert);                                                               //collects content from input, and uses the post's id
-      $stmt->execute($data);
-      for($i=0; $i < sizeof($postCatagory);$i++)                                                              //Works to connect post to one or more tags
-      {
-        $stmt = $db->prepare("INSERT INTO post_tag (postID, tagID) VALUES (?,?)");
-        $data = array($lastInsert, $postCatagory[$i]);
-        $stmt->execute($data);
-      }
-      for($i=0;$i<sizeof($imageNames);$i++)                                                                   //works to connect one or more files to the post
-      {
-        $stmt = $db->prepare("INSERT INTO image (imageName, imageFile, imageCaption, imageDate) VALUES (?,?,?,?)");
-        $data = array($imageNames[$i], $imagePath[$i], " ", $date );
-        $stmt->execute($data);
-        $lastInsertImage = $db->lastInsertId();
-        $stmt = $db->prepare("INSERT INTO post_image (imageID, postID) VALUES (?,?)");
-        $data = array($lastInsertImage, $lastInsert);
-        $stmt->execute($data);
-      }
-
-      $message = "Successfully inserted a new Post";                                                          //if the try catch block executes without issue, this message is generated
+      $code = 1;
+      $message = $db->lastInsertId();
     }
     catch (PDOException $e)
     {
-      $message = "Error: " . $e->getMessage();                                                                //else, capture the fault and make that the message
+      $message = $e->getMessage();
+      $code = $e->getCode();
     }
-    return $message;                                                                                          //output the generated message.
+    return array($code, $message);
   }
 
 //  ==================================================================================== GET A POST
-  public static function getPost($postID)
+  public static function id($postID)
   {
+    $message="";
+    $code;
     $db = Db::getInstance();
-    $sql = "SELECT * FROM post WHERE postID = ? ";
+    $sql = "SELECT * FROM post WHERE ID = ? ";
     $data = array($postID);
     try
     {
       $stmt=$db->prepare($sql);
       $stmt->execute($data);
-      $post = $stmt->fetch(PDO::FETCH_ASSOC);
-      $contents = Post::getContent($postID);
-      $tags = Post::getTags($postID);
-      $author = User::getUser($post['author']);
-      $images = Post::getImages($postID);
-      return new Post($postID, $post['postName'], $post['postDate'],$post['postTime'],$contents,[],$author,$images,$tags);
+      $r = $stmt->fetch(PDO::FETCH_ASSOC);
+      $code = 1;
+      $message =  new Post($r['ID'], $r['title'], $r['publishDate'],$r['publishTime'], $r['content'], $r['author']);
     }
     catch(PDOException $e)
     {
-      echo "ERROR in getPost: " . $e->getMessage();
+      $message = $e->getMessage();
+      $code = $e->getCode();
     }
+    return array($code, $message);
   }
 //  ==================================================================================== GET ALL POSTS
   public static function all()
   {
+    $message="";
+    $code;
     $db = Db::getInstance();
-    $sql = "SELECT postID FROM post ORDER BY post.postDate DESC, post.postTime DESC";
-    $postList = array();
-
+    $sql = "SELECT * FROM post ORDER BY post.publishDate DESC, post.publishTime DESC";
+    $list = array();
     try
     {
       $stmt = $db->prepare($sql);
-      $results = $stmt->execute();
-      while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+      $stmt->execute();
+      while($r = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $postList[] = Post::getPost($result['postID']);
+        $list[] = new Post($r['ID'], $r['title'], $r['publishDate'],$r['publishTime'], $r['content'], $r['author']);
       }
-      return $postList;
+      $code = 1;
+      $message = $list;
     }
     catch(PDOException $e)
     {
-      echo "ERROR in all: " . $e->getMessage();
+      $message = $e->getMessage();
+      $code = $e->getCode();
     }
+    return array($code, $message);
   }
 //  ==================================================================================== GET A NUMBER OF POSTS
   public static function quantity($quant)
   {
+    $message="";
+    $code;
     $db = Db::getInstance();
-    $sql = "SELECT postID FROM post ORDER BY post.postDate DESC, post.postTime DESC LIMIT :howmany ";
-    $postList = array();
-
+    $sql = "SELECT * FROM post ORDER BY post.publishDate DESC, post.publishTime DESC";
+    $list = array();
     try
     {
       $stmt = $db->prepare($sql);
-      $stmt->bindValue(':howmany', $quant, PDO::PARAM_INT);
       $stmt->execute();
-      while($result = $stmt->fetch(PDO::FETCH_ASSOC))
-      {
-        $postList[] = Post::getPost($result['postID']);
-      }
-      return $postList;
-    }
-    catch(PDOException $e)
-    {
-      echo "ERROR in quantity: " . $e->getMessage();
-    }
-  }
-  //  ==================================================================================== GET POST BY TAG
-    public static function tag($tag)
-    {
-      $db = Db::getInstance();
-      $sql = "SELECT post.postID FROM post INNER JOIN (SELECT post_tag.postID FROM post_tag WHERE post_tag.tagID IN (SELECT tagID FROM tag WHERE tagName = ?)) as a on a.postID = post.postID ORDER BY post.postDate DESC, post.postTime DESC";
-      $data = array($tag);
-      $postList = array();
       $counter = 0;
-      try
+      while($r = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $stmt = $db->prepare($sql);
-        $stmt->execute($data);
-        while($result = $stmt->fetch(PDO::FETCH_ASSOC))
-        {
-          $postList[] = Post::getPost($result['postID']);
-        }
-        return $postList;
+        if($counter < $quant)
+          $list[] = new Post($r['ID'], $r['title'], $r['publishDate'],$r['publishTime'], $r['content'], $r['author']);
+          $counter++;
       }
-      catch(PDOException $e)
-      {
-        echo "ERROR in tag: " . $e->getMessage();
-      }
-    }
-//  ==================================================================================== GET CONTENT OF POST
-  public static function getContent($postID)
-  {
-    $db = Db::getInstance();
-    $sql = "SELECT contentID, contentContents FROM content WHERE postID =?";
-    $data = array($postID);
-
-
-    try
-    {
-      $stmt = $db->prepare($sql);
-      $results = $stmt->execute($data);
-      $output = array();
-      while($r = $stmt->fetch(PDO::FETCH_ASSOC, 0))
-      {
-        $output[] = array($r['contentID'], nl2br($r['contentContents']));
-      }
-      return $output;
+      $code = 1;
+      $message = $list;
     }
     catch(PDOException $e)
     {
-      echo "ERROR in getcontent: " . $e->getMessage();
+      $message = $e->getMessage();
+      $code = $e->getCode();
     }
+    return array($code, $message);
+  }
 
-  }
-//  ==================================================================================== GET IMAGES
-  public static function getImages($postID)
-  {
-    $db = Db::getInstance();
-    $sql ="SELECT imageFile FROM image WHERE image.imageID IN (SELECT imageID FROM post_image WHERE postID = ?)";
-    $data = array($postID);
-    try
-    {
-      $stmt = $db->prepare($sql);
-      $stmt->execute($data);
-      return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
-    }
-    catch(PDOException $e)
-    {
-      echo "ERROR in getImages: " . $e->getMessage();
-    }
-  }
 //  ==================================================================================== GET AUTHORS
-  public static function getAuthor($userID)
+  public static function byAuthor($authorID)
   {
+    $message="";
+    $code;
     $db = Db::getInstance();
-    $sql="SELECT firstName, lastName FROM user WHERE userID =?";
+    $sql = "SELECT * FROM post WHERE author =? ORDER BY post.publishDate DESC, post.publishTime DESC";
     $data = array($userID);
     try
     {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
-      $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      return $result['firstName']." ".$result['lastName'];
+      while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        $list[] = new Post($r['ID'], $r['title'], $r['publishDate'],$r['publishTime'], $r['content'], $r['author']);
+      }
+      $code = 1;
+      $message = $list;
     }
     catch(PDOException $e)
     {
-      echo "ERROR in getAuthor: " . $e->getMessage();
+      $message = $e->getMessage();
+      $code = $e->getCode();
     }
+    return array($code, $message);
   }
-//  ==================================================================================== GET TAGS
-  public static function getTags($postID)
-  {
-    $db = Db::getInstance();
-    $sql = "SELECT tag.tagName FROM tag WHERE tag.tagID IN (SELECT post_tag.tagID FROM post_tag WHERE post_tag.postID = ?) ";
-    $data = array($postID);
-    try
-    {
-      $stmt = $db->prepare($sql);
-      $result = $stmt->execute($data);
-      return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
-    }
-    catch(PDOException $e)
-    {
-      echo "ERROR in getTags: " . $e->getMessage();
-    }
-  }
+
   //  ==================================================================================== UPDATE POST
 
-  public static function updatePost($postID, $postName, $postDate, $postTime, $postContent, $postContentID)
+  public static function update($id, $title, $content, $publishDate, $publishTime)
   {
-
+    $message;
+    $code;
     $db = Db::getInstance();
-    $sql = "UPDATE post SET postName = ?, postDate = ?, postTime = ? WHERE postID = ? ";
-    $sql2 = "UPDATE content SET contentContents = ? WHERE postID = ?";
-    $data = array($postName, $postDate, $postTime, $postID);
-    $data2 = array($postContent[0], $postID);
+    $sql = "UPDATE post SET title = ?, content = ?, publishDate = ?, publishTime = ? WHERE ID = ? ";
+    $data = array($title, $content, $publishDate, $publishTime,$id);
     try
     {
       $stmt = $db->prepare($sql);
-      $result = $stmt->execute($data);
-      $stmt = $db->prepare($sql2);
-      $result = $stmt->execute($data2);
+      $stmt->execute($data);
+      $code = 1;
+      $message = "Successfully updated post";
     }
-    catch(PDOException $e)
+    catch (PDOException $e)
     {
-      echo "ERROR in updatePost: " . $e->getMessage();
+      $message = $e->getMessage();
+      $code = $e->getCode();
     }
-
+    return array($code, $message);
   }
   //  ==================================================================================== Delete POST
 
-  public static function deletePost($postID)
+  public static function delete($postID)
   {
 
     $db = Db::getInstance();
-    $sql = "DELETE FROM post WHERE postID = ? ";
+    $sql = "DELETE FROM post WHERE ID = ? ";
     $data = array($postID);
     try
     {
       $stmt = $db->prepare($sql);
-      $result = $stmt->execute($data);
+      $stmt->execute($data);
+      $code = 1;
+      $message = "Successfully deleted post";
     }
-    catch(PDOException $e)
+    catch (PDOException $e)
     {
-      echo "ERROR in deletePost: " . $e->getMessage();
+      $message = $e->getMessage();
+      $code = $e->getCode();
     }
+    return array($code, $message);
 
   }
 

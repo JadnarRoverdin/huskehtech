@@ -3,100 +3,277 @@ Class Tag
 {
   public $id;
   public $title;
-  public $desc;
+//=================================================================================== STRUCT
+  public function __construct($id, $title)
+  {
+    $this->id = $id;
+    $this->title = $title;
 
-//  ==================================================================================== TAG OBJECT
-  public function __construct($idin, $titlein, $descin)
-  {
-    $this->id       = $idin;
-    $this->title    = $titlein;
-    $this->desc     = $descin;
   }
-//  ====================================================================================  GET TAGS
-  public static function getTags()
+
+//=================================================================================== CREATE
+  public static function create($title)
   {
-    $list = [];
-    $postNames = [];
-    $postIDs = [];
+    $errorCode;
+    $message;
+
     $db = Db::getInstance();
-    $stmt = $db->prepare("SELECT * FROM tag ORDER BY tagName");
+    $sql = "INSERT INTO tag (title) VALUES (?)";
     try
     {
+      $stmt = $db->prepare($sql);
+      $data = array($title);
+      $stmt->execute($data);
+      $errorCode = 1;
+      $message = $db->lastInsertId();;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
+    }
+
+    return array($errorCode, $message);
+  }
+//=================================================================================== CREATE
+  public static function all()
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "SELECT * FROM tag ORDER BY title ASC";
+    $list = array();
+    try
+    {
+      $stmt = $db->prepare($sql);
+
       $stmt->execute();
-      $output = array();
-      while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+      while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $output[] = new Tag($r['tagID'],$r['tagName'],$r['tagDescription']);
+        $list[]= new Tag($result['ID'], $result['title']);
       }
-      return $output;
+
+      $errorCode = 1;
+      $message = $list;
     }
     catch(PDOException $e)
     {
-      return "Error: " . $e->getMessage();
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
     }
-  }
-//  ==================================================================================== INSERT TAG
-  public static function insertTag($tagName, $tagDescription)
-  {
-    $message = "";
-    try
-    {
-      $db = Db:: getInstance();
-      $stmt = $db->prepare("INSERT INTO tag (tagName, tagDescription) VALUES (?,?)");
-      $data = array($tagName, $tagDescription);
-      $stmt->execute($data);
-      $message ="Successfully inserted a new Tag";
-    }
-    catch (PDOException $e)
-    {
-      $message = "Error: " . $e->getMessage();
-    }
-    return $message;
-  }
-  //  ==================================================================================== GET TAG BY CATAGORY
 
-  public static function catagory($catID)
+    return array($errorCode, $message);
+  }
+//=================================================================================== CREATE
+  public static function id($id)
   {
+    $errorCode;
+    $message;
+
     $db = Db::getInstance();
-    $sql = "SELECT * FROM tag WHERE tagID IN (SELECT tagID FROM catagory_tag WHERE catagory_tag.catagoryID = ?) ORDER BY tag.tagName";
-
-    $stmt = $db->prepare($sql);
-    $data = array($catID);
+    $sql = "SELECT * FROM tag WHERE ID = ?";
     try
     {
+      $stmt = $db->prepare($sql);
+      $data = array($id);
       $stmt->execute($data);
-      $output = array();
-      while($r = $stmt->fetch(PDO::FETCH_ASSOC))
-      {
-        $output[] = new Tag($r['tagID'],$r['tagName'],$r['tagDescription']);
-      }
-      return $output;
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      $errorCode = 1;
+      $message = new Tag($result['ID'], $result['title']);
     }
     catch(PDOException $e)
     {
-      return "Error: " . $e->getMessage();
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
     }
+    return array($errorCode, $message);
   }
-  //  ==================================================================================== ASSOCIATE TAG WITH CATAGORY
-
-  public static function associateTagWithCatagory($catID, $tagIDs)
+//=================================================================================== CREATE
+  public static function title($title)
   {
-    $message = "";
+    $errorCode;
+    $message;
+
+    $db = Db::getInstance();
+    $sql = "SELECT * FROM tag WHERE title = ?";
     try
     {
-      $db = Db:: getInstance();
-      $stmt = $db->prepare("INSERT INTO catagory_tag (catagoryID, tagID) VALUES (?,?)");
-      foreach($tagIDs as $tagID)
-      {
-        $data = array($catID, $tagID);
-        $stmt->execute($data);
-      }
-      $message ="Successfully linked tags to Catagory";
+      $stmt = $db->prepare($sql);
+      $data = array($title);
+      $stmt->execute($data);
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      $errorCode = 1;
+      $message = new Tag($result['ID'], $result['title']);
     }
-    catch (PDOException $e)
+    catch(PDOException $e)
     {
-      $message = "Error: " . $e->getMessage();
+      $errorCode  = $e->getCode();
+      $message    = "getting profile by user ".$e->getMessage();
     }
-    return $message;
+    return array($errorCode, $message);
   }
+  //=================================================================================== CREATE
+    public static function associateWithProject($tagID, $projectID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "INSERT INTO project_tag (tagID, projectID) VALUES (?,?)";
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $data = array($tagID, $projectID);
+        $stmt->execute($data);
+        $errorCode = 1;
+        $message = $db->lastInsertId();;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+
+      return array($errorCode, $message);
+    }
+  //===================================================================================
+    public static function associateWithPost($tagID, $postID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "INSERT INTO post_tag (tagID, postID) VALUES (?,?)";
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $data = array($tagID, $postID);
+        $stmt->execute($data);
+        $errorCode = 1;
+        $message = $db->lastInsertId();;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+
+      return array($errorCode, $message);
+    }
+  //=================================================================================== CREATE
+    public static function project($projectID)
+    {
+      $errorCode;
+      $message;
+
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM tag WHERE ID in (SELECT tagID FROM project_tag WHERE project_tag.projectID = ?)";
+      $list = array();
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $data = array($projectID);
+        $stmt->execute($data);
+        while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $list[]= new Tag($result['ID'], $result['title']);
+        }
+
+        $errorCode = 1;
+        $message = $list;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = "getting profile by user ".$e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+  //===================================================================================
+  public static function post($postID)
+  {
+    $errorCode;
+    $message;
+
+    $db = Db::getInstance();
+    $sql = "SELECT * FROM tag WHERE ID in (SELECT tagID FROM post_tag WHERE post_tag.postID = ?)";
+    $list = array();
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $data = array($postID);
+      $stmt->execute($data);
+      while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        $list[]= new Tag($result['ID'], $result['title']);
+      }
+
+      $errorCode = 1;
+      $message = $list;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e->getCode();
+      $message    = "getting profile by user ".$e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
+  //=================================================================================== CREATE
+    public static function catagory($catagoryID)
+    {
+      $errorCode;
+      $message;
+
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM tag WHERE ID in (SELECT tagID FROM catagory_tag WHERE catagory_tag.catagoryID = ?)";
+      $list = array();
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $data = array($catagoryID);
+        $stmt->execute($data);
+        while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $list[]= new Tag($result['ID'], $result['title']);
+        }
+
+        $errorCode = 1;
+        $message = $list;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = "getting profile by user ".$e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+  //=================================================================================== CREATE
+    public static function catagoryName($catName)
+    {
+      $errorCode;
+      $message;
+
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM tag WHERE ID in (SELECT tagID FROM catagory_tag WHERE catagory_tag.catagoryID IN (SELECT ID FROM catagory WHERE catagory.title = ?))";
+      $list = array();
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $data = array($catName);
+        $stmt->execute($data);
+        while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $list[]= new Tag($result['ID'], $result['title']);
+        }
+
+        $errorCode = 1;
+        $message = $list;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = "getting profile by user ".$e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
 }

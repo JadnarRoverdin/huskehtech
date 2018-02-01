@@ -2,79 +2,70 @@
 Class Profile
 {
   public $id;
+  public $userID;
   public $dob;
   public $location;
   public $biography;
   public $avatar;
-
-//  ==================================================================================== TAG OBJECT
-  public function __construct($idin, $dobin, $locationin, $bioin, $avatarin)
+//=================================================================================== STRUCT
+  public function __construct($id, $userID, $dob, $location, $bio, $avatar)
   {
-    $this->id         = $idin;
-    $this->dob        = $dobin;
-    $this->location   = $locationin;
-    $this->biography  = $bioin;
-    $this->avatar     = $avatarin;
+    $this->id = $id;
+    $this->userID = $userID;
+    $this->dob = $dob;
+    $this->location = $location;
+    $this->biography = $bio;
+    $this->avatar = $avatar;
   }
-//  ==================================================================================== INSERT PROFILE
-  public static function insert($userID, $dob, $loc, $bio, $ava)
+
+//=================================================================================== CREATE
+  public static function create($userID, $dob, $location, $biography, $avatar)
   {
-    $ouput;
+    $errorCode;
+    $message;
+
     $db = Db::getInstance();
-    $sql = "INSERT INTO userprofile (userID, DoB, location, biography, avatar) VALUES (?,?,?,?,?)";
-    $stmt = $db->prepare($sql);
+    $sql = "INSERT INTO profile (userID, dob, location, biography, avatar) VALUES (?,?,?,?,?)";
     try
     {
-      $targetFile = Upload::avatarUpload($ava);
-      $data = array($dob, $loc, $bio, $targetFile, $userID);
+      $stmt = $db->prepare($sql);
+      $data = array($userID, $dob, $location, $biography, $avatar);
       $stmt->execute($data);
-      $output = "Profile Creation successful";
+      $errorCode = 1;
+      $message = "Profile Created";
     }
     catch(PDOException $e)
     {
-      $output = $e->getMessage();
+      $errorCode  = $e->getCode();
+      $message    = "creation of profile. ".$e->getMessage();
     }
-    return $output;
+
+    return array($errorCode, $message);
   }
-//  ==================================================================================== PULL BY UserID
-  public static function userID($userID)
+//=================================================================================== CREATE
+  public static function getbyUser($userID)
   {
-    $ouput;
+    $errorCode;
+    $message;
+
     $db = Db::getInstance();
-    $sql = "SELECT * FROM userprofile WHERE userID = ?";
-    $stmt = $db->prepare($sql);
+    $sql = "SELECT * FROM profile WHERE userID = ?";
     try
     {
+      $stmt = $db->prepare($sql);
       $data = array($userID);
       $stmt->execute($data);
-      $r = $stmt->fetch(PDO::FETCH_ASSOC);
-      $output = new Profile($r['profileID'], $r['DoB'], $r['location'], $r['biography'], $r['avatar']);
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      $errorCode = 1;
+      $message = new Profile($result['ID'],$result['userID'],$result['dob'],$result['location'],$result['biography'],$result['avatar']);
     }
     catch(PDOException $e)
     {
-      $output = $e->getMessage();
+      $errorCode  = $e->getCode();
+      $message    = "getting profile by user ".$e->getMessage();
     }
-    return $output;
-  }
-//  ==================================================================================== INSERT PROFILE
-  public static function update($userID, $dob, $loc, $bio, $ava)
-  {
-    $ouput;
-    $db = Db::getInstance();
-    $sql = "UPDATE userprofile SET DoB= ?, location= ?, biography=?, avatar=? WHERE userID = ?";
-    $stmt = $db->prepare($sql);
-    try
-    {
-      $targetFile = Upload::avatarUpload($ava);
-      $data = array($dob, $loc, $bio, $targetFile, $userID);
-      $stmt->execute($data);
-      $output = "Profile UPDATE successful";
-    }
-    catch(PDOException $e)
-    {
-      $output = $e->getMessage();
-    }
-    return $output;
+
+    return array($errorCode, $message);
   }
 }
-?>

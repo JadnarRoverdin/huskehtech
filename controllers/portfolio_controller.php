@@ -1,31 +1,51 @@
 <?php
 Class PortfolioController
 {
-  public function index()
+  public function newPortfolio()
   {
-    $catagories = Catagory::getCats();
-    require_once('views/portfolio/index.php');
+
+  }
+//===================================================================================
+  public function newProject()
+  {
+    $authorID = User::getIDbyToken($_SESSION['token'])[1];
+    $currentTimeStamp = $_SERVER['REQUEST_TIME'];
+    $rawdate = date("Y-m-d", $currentTimeStamp);
+    $rawtime = date("h:i:s", $currentTimeStamp);
+    if(isset($_POST['title']))
+    {
+      if($_POST['update'] == 'true')
+        Project::update($_POST['projectID'], $_POST['title'],$_POST['description'],$_POST['date'],$_POST['time']);
+      else
+        Project::insert($_POST['author'], $_POST['title'],$_POST['description'],$_POST['date'],$_POST['time']);
+        echo("<script>location.href = '?controller=pages&action=portfolio';</script>");
+    }
+    else
+    {
+      require_once('views/portfolio/projectEditor.php');
+    }
+  }
+//===================================================================================
+  public function update()
+  {
+    $authorID = User::getIDbyToken($_SESSION['token'])[1];
+    $update = true;
+    $post = Project::id($_GET['projectID'])[1];
+
+    require_once('views/portfolio/projectEditor.php');
   }
 
-  public function viewPost()
+  public function delete()
   {
-    $post = Post::id($_GET['postID']);
-    require_once('views/portfolio/viewPost.php');
+    Project::delete($_GET['projectID']);
+    echo("<script>location.href = '?controller=pages&action=portfolio';</script>");
   }
-  public function about()
+//===================================================================================
+  public function viewPortfolio()
   {
-    require_once('views/pages/about.php');
-  }
-
-  public function getByTag()
-  {
-    $posts = Post::tag($_GET['tagName']);
-    require_once('views/pages/index.php');
-  }
-
-  public function error()
-  {
-    require_once('views/pages/error.php');
+    $authorID = User::getIDbyToken($_SESSION['token'])[1];
+    $projects = Project::byAuthor($authorID)[1];
+    require_once('views/portfolio/viewPortfolio.php');
   }
 }
 ?>

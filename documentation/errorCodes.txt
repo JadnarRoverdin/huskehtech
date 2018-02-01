@@ -1,0 +1,4 @@
+1 - successfully completed operation
+2 - user email not Confirmed
+3 - password or email incorrect
+4 - Email already registereted

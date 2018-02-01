@@ -1,0 +1,53 @@
+.hovermenucontainer
+{
+  width:200px;
+  height:100%;
+  transition: all 1s ease-in-out;
+  position:relative;
+  display:inline-block;
+}
+
+.hovermenu
+{
+  display:none;
+  position:absolute;
+  text-align:left;
+  right:0px;
+  background-color:white;
+  border: 1px solid black;
+  min-width:200px;
+  z-index:1;
+}
+
+.hovermenu a
+{
+  padding:5px;
+  text-decoration:none;
+  display:block;
+}
+
+.hovermenu a:hover
+{
+  background-color:lightgrey;
+}
+
+.hoverbutton
+{
+  width:200px;
+  line-height:50px;
+  border: 0px solid black;
+  transition: all 0.5s ease-in-out;
+  margin:0;
+  padding:0;
+}
+button.hoverbutton:hover
+{
+
+  color:black;
+  background-color:lightgrey;
+}
+
+.hovermenucontainer:hover .hovermenu
+{
+  display:block;
+}
