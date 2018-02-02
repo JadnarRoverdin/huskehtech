@@ -2,9 +2,9 @@ button
 {
   padding:5px;
   margin:5px;
-  background-color: white;
-  border: 1px solid black;
-  color:black;
+  background-color: black;
+  border: 1px solid rgb(100,100,100);
+  color:white;
   font-size: 15px;
   height: 100%;
 }
@@ -20,7 +20,7 @@ input
   padding:5px;
   margin:5px;
 
-  border: 1px solid black;
+  border: 1px solid rgb(100,100,100);
   color:white;
   font-size: 15px;
   border-radius:5px;
@@ -31,7 +31,7 @@ textarea
   padding:5px;
   margin:5px;
 
-  border: 1px solid black;
+  border: 1px solid rgb(100,100,100);
   color:white;
   background-color:black;
   font-size: 15px;
@@ -43,7 +43,7 @@ select
   padding:5px;
   margin:5px;
 
-  border: 1px solid black;
+  border: 1px solid rgb(100,100,100);
   color:white;
   background-color:black;
   font-size: 15px;
@@ -56,7 +56,7 @@ button.menulink
   color:white;
   width:100px;
   line-height: 50px;
-  border: 0px solid black;
+  border: 0px solid rgb(100,100,100);
   transition: all 0.5s ease-in-out;
   margin:0;
   padding:0;
