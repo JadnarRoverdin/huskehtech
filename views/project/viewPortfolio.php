@@ -36,13 +36,9 @@
         $outstring .= $splitstring[$i]." ";
       }
       echo nl2br($outstring)."<a href='?controller=project&action=viewProject&id=".$p->id."'>...</a><hr>";
-
     }
-    else if
-    {
 
 
-    }
 
     $tagSize = sizeof($p->tags);
     for($i = 0; $i<$tagSize; $i++)
