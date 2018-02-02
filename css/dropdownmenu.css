@@ -1,5 +1,6 @@
 .hovermenucontainer
 {
+
   width:200px;
   height:100%;
   transition: all 1s ease-in-out;
@@ -9,11 +10,12 @@
 
 .hovermenu
 {
+
   display:none;
   position:absolute;
   text-align:left;
   right:0px;
-  background-color:white;
+  background-color:rgba(0,0,0,.8);
   border: 1px solid black;
   min-width:200px;
   z-index:1;
@@ -24,15 +26,18 @@
   padding:5px;
   text-decoration:none;
   display:block;
+  transition: all 0.5s ease-in-out;
 }
 
 .hovermenu a:hover
 {
-  background-color:lightgrey;
+  background-color:rgb(100,100,100);
 }
 
 .hoverbutton
 {
+  color:white;
+  background-color: black;
   width:200px;
   line-height:50px;
   border: 0px solid black;
@@ -43,8 +48,8 @@
 button.hoverbutton:hover
 {
 
-  color:black;
-  background-color:lightgrey;
+  /* color:black; */
+  background-color:rgb(100,100,100);
 }
 
 .hovermenucontainer:hover .hovermenu

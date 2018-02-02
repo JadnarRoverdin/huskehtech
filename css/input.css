@@ -16,11 +16,12 @@ button.smalllink
 
 input
 {
+  background-color: black;
   padding:5px;
   margin:5px;
-  background-color: white;
+
   border: 1px solid black;
-  color:black;
+  color:white;
   font-size: 15px;
   border-radius:5px;
 }
@@ -29,15 +30,30 @@ textarea
 {
   padding:5px;
   margin:5px;
-  background-color: white;
+
   border: 1px solid black;
-  color:black;
+  color:white;
+  background-color:black;
+  font-size: 15px;
+  border-radius:5px;
+}
+
+select
+{
+  padding:5px;
+  margin:5px;
+
+  border: 1px solid black;
+  color:white;
+  background-color:black;
   font-size: 15px;
   border-radius:5px;
 }
 
 button.menulink
 {
+  background-color:black;
+  color:white;
   width:100px;
   line-height: 50px;
   border: 0px solid black;
@@ -48,14 +64,15 @@ button.menulink
 button.menulink:hover
 {
 
-  color:black;
-  background-color:lightgrey;
+  background-color:rgb(100,100,100);
 }
 
 button.titleLink
 {
+  background-color: black;
+  color:white;
   font-size:40px;
-  width:200px;
+  width:250px;
   line-height: 50px;
   border: 0px solid black;
   transition: all 0.5s ease-in-out;
