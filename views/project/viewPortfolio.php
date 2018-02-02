@@ -20,7 +20,7 @@
     }
     echo "</div><hr>";
     echo "Author: ".$currUser->firstName." ".$currUser->lastName."<br>";
-    echo $p->date." | ".$p->time."<hr>";
+    echo $p->date."<hr>";
 
     $splitstring = explode(" ", $p->description);
     $sizeofspliltString = sizeof($splitstring);
