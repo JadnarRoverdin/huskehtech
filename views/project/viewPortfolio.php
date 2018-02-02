@@ -7,6 +7,7 @@
   {
     $currImageCount =0;
     $currUser = $p->user;
+    $firstisDone = false;
     echo "<div class='newsCard'>";
     echo "<a href='?controller=project&action=viewProject&id=".$p->id."'><h3>".$p->title."</h3></a>";
     echo "<div class='thumbnailcontainer'>";
@@ -14,8 +15,11 @@
     {
       if($c->format == "image")
       {
-        if($currImageCount < $maxImages)
+        if(!$firstisDone)
+        {
           echo "<a href='".$c->data."' target='_blank'><img src='".$c->data."' height='200'></a><br>";
+          $firstisDone = true;
+        }
         else
           $currImageCount++;
       }
