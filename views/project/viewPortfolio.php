@@ -24,20 +24,23 @@
 
     $splitstring = explode(" ", $p->description);
     $sizeofspliltString = sizeof($splitstring);
-    $limit = ($sizeofspliltString < 100) ? $sizeofspliltString : 100;
-    if($limit > 100)
+    if($sizeofspliltString <= 100)
+    {
+      echo nl2br($p->description)."<hr>";
+    }
+    else
     {
       $outstring = "";
-      for($i = 0; $i < $limit; $i++)
+      for($i = 0; $i < 100; $i++)
       {
         $outstring .= $splitstring[$i]." ";
       }
       echo nl2br($outstring)."<a href='?controller=project&action=viewProject&id=".$p->id."'>...</a><hr>";
 
     }
-    else
+    else if
     {
-        echo nl2br($p->description)."<hr>";
+
 
     }
 
