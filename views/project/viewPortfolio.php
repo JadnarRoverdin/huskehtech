@@ -21,7 +21,26 @@
     echo "</div><hr>";
     echo "Author: ".$currUser->firstName." ".$currUser->lastName."<br>";
     echo $p->date." | ".$p->time."<hr>";
-    echo nl2br($p->description)."<hr>";
+
+    $splitstring = explode(" ", $p->description);
+    $sizeofspliltString = sizeof($splitstring);
+
+    $limit = ($sizeofspliltString < 240) ? $sizeofspliltString : 240;
+
+    if($limit == 240)
+    {
+      echo nl2br($p->description)."<hr>";
+    }
+    else
+    {
+        $outstring = "";
+        for($i = 0; $i < $limit; $i++)
+        {
+          $outstring += $splitstring." ";
+        }
+        echo nl2br($outstring."...")."<hr>";
+
+    }
 
     $tagSize = sizeof($p->tags);
     for($i = 0; $i<$tagSize; $i++)
