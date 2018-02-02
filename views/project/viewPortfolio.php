@@ -25,7 +25,7 @@
     $splitstring = explode(" ", $p->description);
     $sizeofspliltString = sizeof($splitstring);
     $limit = ($sizeofspliltString < 100) ? $sizeofspliltString : 100;
-    if($limit <= 100)
+    if($limit > 100)
     {
       $outstring = "";
       for($i = 0; $i < $limit; $i++)
