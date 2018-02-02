@@ -14,7 +14,7 @@
     {
       if($c->format == "image" and $currImageCount < $maxImages)
       {
-        echo "<img src='".$c->data."' height='200'><br>";
+        echo "<a href='".$c->data."' target='_blank'><img src='".$c->data."' height='200'></a><br>";
         $currImageCount++;
       }
     }
