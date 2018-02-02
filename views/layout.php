@@ -27,9 +27,9 @@ else
     <script src="vendor/jquery.min.js"></script>
     <script src="js/popup.js"></script>
     <div id='titlecontainer'>
-      <form action='index.php' method='post'>
+      <a href='index.php'>
         <button class='titleLink' type='submit'>HuskehTech</button>
-      </form>
+      </a>
   </div>
     <div id='menucontainer'><?php require_once('views/pages/menu.php');?></div>
     <div id='logincontainer'><?php require_once('views/user/userMenu.php');?></div>
@@ -39,7 +39,7 @@ else
   <body>
 
 
-    <!-- <div class='push'></div> -->
+    <div class='push'></div>
     <div id='sessionMessage error'>
       <?php
         if(isset($_SESSION['message']))

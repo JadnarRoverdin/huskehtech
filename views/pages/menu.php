@@ -1,9 +1,10 @@
-<form action='index.php' method='post'>
+<a href='index.php'>
   <button class='menulink' type='submit'>Home</button>
-</form>
-<form action='?controller=pages&action=news' method='post'>
+</a>
+
+<a href='?controller=pages&action=news'>
   <button class='menulink' type='submit'>News</button>
-</form>
-<form action='?controller=pages&action=portfolio' method='post'>
+</a>
+<a href='?controller=pages&action=portfolio'>
   <button class='menulink' type='submit'>Portfolio</button>
-</form>
+</a>
