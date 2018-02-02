@@ -12,11 +12,15 @@
     echo "<div class='thumbnailcontainer'>";
     foreach($p->content as $c)
     {
-      if($c->format == "image" and $currImageCount < $maxImages)
+      if($c->format == "image")
       {
-        echo "<a href='".$c->data."' target='_blank'><img src='".$c->data."' height='200'></a><br>";
-        $currImageCount++;
+        if($currImageCount < $maxImages)
+          echo "<a href='".$c->data."' target='_blank'><img src='".$c->data."' height='200'></a><br>";
+        else
+          $currImageCount++;
       }
+    if($currImageCount > 0)
+      echo "+".$currImageCount." more."
     }
     echo "</div><hr>";
     echo "Author: ".$currUser->firstName." ".$currUser->lastName."<br>";
@@ -35,7 +39,7 @@
       {
         $outstring .= $splitstring[$i]." ";
       }
-      echo nl2br($outstring)."<a href='?controller=project&action=viewProject&id=".$p->id."'>...</a><hr>";
+      echo "<a href='?controller=project&action=viewProject&id=".$p->id."'>".nl2br($outstring)."...</a><hr>";
     }
 
 
