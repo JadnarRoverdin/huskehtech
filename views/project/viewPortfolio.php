@@ -24,12 +24,7 @@
 
     $splitstring = explode(" ", $p->description);
     $sizeofspliltString = sizeof($splitstring);
-    echo $sizeofspliltString."====";
-
     $limit = ($sizeofspliltString < 30) ? $sizeofspliltString : 30;
-
-    echo $limit."====";
-
     if($limit <= 30)
     {
       $outstring = "";
