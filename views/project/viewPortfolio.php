@@ -20,7 +20,7 @@
           $currImageCount++;
       }
     if($currImageCount > 0)
-      echo "+".$currImageCount." more."
+      echo "+".$currImageCount." more.";
     }
     echo "</div><hr>";
     echo "Author: ".$currUser->firstName." ".$currUser->lastName."<br>";
