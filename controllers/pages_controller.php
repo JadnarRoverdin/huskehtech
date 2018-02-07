@@ -28,5 +28,16 @@ Class PagesController
   {
     require_once('views/pages/adminstration.php');
   }
+  public function contact()
+  {
+    $result = "";
+    if(isset($_POST['email']))
+    {
+      $name = $_POST['firstname']." ".$_POST['lastname'];
+      Email::send($_POST['email'], $name, $_POST['message']);
+      $result = "Email Sent. You will recieve a reply as soon as possible. Thank you";
+    }
+      require_once('views/pages/contact.php');
+  }
 }
 ?>

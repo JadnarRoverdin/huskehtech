@@ -1,4 +1,4 @@
-<div class='topPane'></div>
+<div class='container'></div>
 <div class='bottomPane'>
   <div class='lowerLeftPane'>
     <h2>Latest News</h2>

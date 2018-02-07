@@ -5,6 +5,7 @@
   require_once("models/portfolio.php");
   require_once("models/content.php");
   require_once("models/tag.php");
+  require_once("models/email.php");
   function call ($controller, $action)
   {
     require_once("controllers/".$controller."_controller.php");
@@ -32,7 +33,7 @@
     $controller->{$action}();
   }
 
-  $controllers = array (  'pages'     => ['home', 'index', 'news', 'portfolio','admin'],
+  $controllers = array (  'pages'     => ['home', 'index', 'news', 'portfolio','admin','contact'],
                           'user'      => ['register', 'resetPassword', 'login', 'logout', 'viewProfile'],
                           'news'      => ['new', 'update', 'delete'],
                           'project' => ['insert', 'viewPortfolio', 'viewProject', 'update', 'delete', 'upload', 'getByTag'],
