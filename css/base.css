@@ -139,10 +139,10 @@ html
 }
 body
 {
-  color: lightgrey;
-  background: #000000 url("../img/lightbar.jpg") repeat-x center top;
+  color: black;
+  /* background: #000000 url("../img/lightbar.jpg") repeat-x center top;
   background-attachment: fixed;
-  background
+  background */
   margin: 0;
   padding: 0;
 }
